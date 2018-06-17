@@ -45,6 +45,8 @@ def processImage(inputPath, outputPath, size):
                 cv2.imwrite(filepath, smallPic)
                 print 'Write file:', filepath
                 #break
+        else:
+            print 'Cannot open video: ', inputPath
 
     elif os.path.isdir(inputPath):
         filenames = glob.glob(os.path.join(inputPath, '*.jpg'))
