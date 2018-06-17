@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding=utf-8 -*-
 import argparse
+import cv2
+import os
+import os.path
+import hashlib
+import glob
 
 def getSquare(img):
     rows, cols = img.shape[:2]
@@ -12,10 +17,15 @@ def getSquare(img):
     return img
 
 def processImage(inputPath, outputPath, size):
-    import cv2
-    import os.path
-    import hashlib
-    import glob
+    if not os.path.exists(outputPath):
+        try:
+            print 'try to make output directory: ', outputPath
+            os.mkdir(outputPath)
+            print 'make output directory success'
+        except OSError as ex:
+            print 'Cannot make directory'
+
+
     if os.path.isfile(inputPath):
         videoin = cv2.VideoCapture(inputPath)
         if videoin.isOpened():
